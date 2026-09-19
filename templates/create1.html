@@ -1,0 +1,80 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <title>Create Account</title>
+  <style>
+    body {
+      font-family: Arial;
+      text-align: center;
+      margin-top: 15%;
+    }
+    table{
+        border-spacing: 15px;
+    }
+    td{
+        padding: 10px;
+    }
+    input{
+        padding: 8px;
+    }
+    div {
+      color: white;
+      background-color: blue;
+      padding: 10px;
+      width:380px; 
+      height: 20px;
+      text-align: center;
+      margin: auto;
+      border-radius: 5px;
+    }
+    .btn { 
+      color: white;
+      background-color: green;
+      padding: 10px;
+      width: 350px; 
+      text-align: center; 
+      border-radius: 5px;
+      cursor: pointer;
+    }
+  </style>
+</head>
+<body>
+  <center>
+    <form action="/register" method="POST">
+      <center><h2>Create Account</h2></center>
+      
+      {% if error %}
+      <p style="color: red; font-weight: bold;">{{ error }}</p>
+      {% endif %}
+
+      <table>
+        <tr>
+          <td>Username</td>
+          <td><input type="text" name="username" placeholder="Enter your username" required></td>
+        </tr>
+        <tr>
+          <td>Phone Number</td>
+          <td><input type="number" name="phone" placeholder="Enter your phone number" required></td>
+        </tr>
+        <tr>
+          <td>Password</td>
+          <td><input type="password" name="password" placeholder="Password should atleast 5" required></td>
+        </tr>
+        <tr>
+          <td>Confirm Password</td>
+          <td><input type="text" name="confirm_password" placeholder="re-enter your password" required></td>
+        </tr>
+      </table>
+      <br>
+      <button type="submit" class="btn">Create</button>
+    </form>
+  </center>
+
+  <br>
+  <p>
+    If you Already Have Account ->
+  <a href="/login">Login</a>
+  </p>
+
+</body>
+</html>

@@ -1,0 +1,10 @@
+<h1>{{ subject }} Quiz</h1>
+<form action="/submit/{{ subject }}" method="POST">
+  {% for i in range(questions|length) %}
+    <p>{{ questions[i].q }}</p>
+    {% for opt in questions[i].options %}
+      <input type="radio" name="q{{ i }}" value="{{ opt }}"> {{ opt }}<br>
+    {% endfor %}
+  {% endfor %}
+  <br><button type="submit">Submit</button>
+</form>

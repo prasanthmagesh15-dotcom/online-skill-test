@@ -1,0 +1,61 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <title>Login Account</title>
+  <style>
+    body {
+      font-family: Arial;
+      text-align: center;
+      margin-top: 15%;
+    }
+    table{
+        border-spacing: 15px;
+    }
+    td{
+        padding: 10px;
+    }
+    input{
+        padding: 8px;
+    }
+    .btn {
+      color: white;
+      background-color: green;
+      padding: 10px;
+      width: 350px; 
+      text-align: center; 
+      border-radius: 5px;
+      cursor: pointer;
+    }
+  </style>
+</head>
+<body>
+  <center>
+    <form action="/login_check" method="POST">
+      <center><h2>Login Account</h2></center>
+
+      {% if error %}
+      <p style="color: red; font-weight: bold;">{{ error }}</p>
+      {% endif %}
+
+      <table>
+        <tr>
+          <td>Username Or Phone Number</td>
+          <td><input type="text" name="username" placeholder="Enter username or number" required></td>
+        </tr>
+        <tr>
+          <td>Password</td>
+          <td><input type="password" name="password" placeholder="Enter Your Password" required></td>
+        </tr>
+      </table>
+      <br>
+      <button type="submit" class="btn">Login</button>
+    </form>
+  </center>
+
+  <br>
+  <h3>If No Account ->
+  <a href="/">Create Account</a>
+  </h3>
+
+</body>
+</html>
