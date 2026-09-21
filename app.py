@@ -1,8 +1,9 @@
-from flask import Flask, render_template, request, jsonify
+from flask import Flask, render_template, request, jsonify, session
 import mysql.connector
 import os
 
 app = Flask(__name__)
+app.secret_key = "skill_test_secret"
 
 db = mysql.connector.connect(
     host=os.getenv("DB_HOST", "localhost"),
@@ -96,11 +97,21 @@ def login_check():
         return render_template('login1.html', error="Invalid username or number")
     if user[3]!= password:
         return render_template('login1.html', error="Incorrect password")
-    return render_template('home.html')
+
+    # Save username in session
+    session['username'] = user[1]
+    cursor.execute("SELECT subject, score, total FROM results WHERE username=%s", (user[1],))
+    results = cursor.fetchall()
+    return render_template('home.html', results=results)
 
 @app.route('/home_page')
 def home_page():
-    return render_template('home.html')
+    username = session.get('username')
+    if not username:
+        return render_template('login1.html', error="Login first")
+    cursor.execute("SELECT subject, score, total FROM results WHERE username=%s", (username,))
+    results = cursor.fetchall()
+    return render_template('home.html', results=results)
 
 @app.route('/quiz/<subject>')
 def quiz(subject):
@@ -114,6 +125,18 @@ def submit_quiz(subject):
     for i in range(len(questions)):
         if request.form.get(f'q{i}') == questions[i]['ans']:
             score += 1
+
+    username = session.get('username', 'guest')
+
+    # Update if exists else insert
+    cursor.execute("SELECT id FROM results WHERE username=%s AND subject=%s", (username, subject))
+    existing = cursor.fetchone()
+    if existing:
+        cursor.execute("UPDATE results SET score=%s, total=%s WHERE username=%s AND subject=%s", (score, len(questions), username, subject))
+    else:
+        cursor.execute("INSERT INTO results (username, subject, score, total) VALUES (%s,%s,%s,%s)", (username, subject, score, len(questions)))
+    db.commit()
+
     return render_template('result.html', subject=subject, score=score, total=len(questions))
 
 @app.route('/api/<subject>')
