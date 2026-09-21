@@ -20,7 +20,7 @@ all_questions = {
         {"q": "3. Output? x=[1,2,3]; print(len(x))", "options": ["3", "2", "1", "0"], "ans": "3"},
         {"q": "4. Output? print('py'*3)", "options": ["pypypy", "py3", "ppp", "yyy"], "ans": "pypypy"},
         {"q": "5. Output? a=5; b=2; print(a//b)", "options": ["2", "2.5", "3", "1"], "ans": "2"},
-        {"q": "6. Output? print([1,2,3][1:])", "options": ["[2, 3]", "[1, 2]", "[1]", "[3]"], "ans": "[2, 3]"},
+        {"q": "6. Output? a=[1,2,3]; print(a[1:])", "options": ["[2, 3]", "[1, 2]", "[1]", "[3]"], "ans": "[2, 3]"},
         {"q": "7. Output? x=[1,2]; y=x; y.append(3); print(x)", "options": ["[1, 2, 3]", "[1, 2]", "[3]", "Error"], "ans": "[1, 2, 3]"},
         {"q": "8. Output? print([i*i for i in range(3)])", "options": ["[0, 1, 4]", "[1, 4, 9]", "[0, 1, 2]", "[1, 2, 3]"], "ans": "[0, 1, 4]"},
         {"q": "9. Output? a={'a':1}; print(a.get('b', 0))", "options": ["0", "1", "None", "Error"], "ans": "0"},
@@ -37,6 +37,7 @@ all_questions = {
         {"q": "8. Output? for(int i=0;i<3;i++){ if(i==1) continue; System.out.print(i); }", "options": ["02", "012", "01", "2"], "ans": "02"},
         {"q": "9. What happens? int x=5/0;", "options": ["ArithmeticException", "0", "Compiles fine", "null"], "ans": "ArithmeticException"},
         {"q": "10. Output? System.out.print(Math.pow(2,3));", "options": ["8.0", "8", "6.0", "9.0"], "ans": "8.0"}
+
     ],
     'c': [
         {"q": "1. C created by?", "options": ["Dennis Ritchie", "James Gosling", "Guido van Rossum", "Ken Thompson"], "ans": "Dennis Ritchie"},

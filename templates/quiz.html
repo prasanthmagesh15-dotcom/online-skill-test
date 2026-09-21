@@ -1,4 +1,27 @@
-<h1>{{ subject }} Quiz</h1>
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Document</title>
+  <style>
+    div{
+      color: white;
+      background-color: black;
+      text-align: center;
+      padding-top: 1px;
+      
+    }
+    h1{
+      margin-top: 2px;
+    }
+  </style>
+</head>
+<body>
+  <div>
+  <h1>{{ subject }} Quiz</h1>
+  </div>
 <form action="/submit/{{ subject }}" method="POST">
   {% for i in range(questions|length) %}
     <p>{{ questions[i].q }}</p>
@@ -8,3 +31,7 @@
   {% endfor %}
   <br><button type="submit">Submit</button>
 </form>
+
+    
+</body>
+</html>
