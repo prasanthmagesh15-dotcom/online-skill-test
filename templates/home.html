@@ -4,14 +4,14 @@
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <title>Skill Test</title>
   <style>
-    .header{
+  .header{
         color: white;
         background-color: blueviolet;
         text-align: center;
         height: 70px;
         padding-top: 35px;
     }
-    .box{
+  .box{
         display: inline-block;
         text-align: center;
         width: 30%;
@@ -21,22 +21,20 @@
         }
         margin-top: 80px;
         margin-left: 30px;
-        
         padding: 10px;
         background-color: aliceblue;
     }
-    .c{
+  .c{
         margin-top: 50px;
         margin-left: 47%;
         font-size: xx-large;
     }
-    .log{
+  .log{
         margin-top: 120px;
         text-align: center;
         font-size: x-large;
     }
   </style>
-  
 </head>
 <body>
 
@@ -44,12 +42,8 @@
     ONLINE ASSESSMENT - SKILL TEST
   </h1>
 
-
-  
     <h1 class="c">Courses</h1>
-    
-    
-      
+
       <div class="box" onclick="window.location.href='/quiz/python'">
         <img src="https://cdn-icons-png.flaticon.com/512/5968/5968350.png" alt="python">
         <h3>Python</h3><p>10 Questions</p>
@@ -64,12 +58,24 @@
         <img src="https://cdn-icons-png.flaticon.com/512/3665/3665923.png" alt="c">
         <h3>C</h3><p>10 Questions</p>
       </div> <br>
+
+      <div style="width:60%; margin:50px auto; border:2px solid blueviolet; border-radius:10px; padding:20px;">
+        <h2 style="text-align:center; color:blueviolet;">Your Results</h2>
+        {% if results %}
+            {% for r in results %}
+            <div style="display:flex; justify-content:space-between; padding:10px; border-bottom:1px solid #eee; font-size:18px;">
+                <span><b>{{ r[0] | upper }}</b></span>
+                <span style="background:#4CAF50; color:white; padding:4px 10px; border-radius:15px;">{{ r[1] }} / {{ r[2] }}</span>
+            </div>
+            {% endfor %}
+        {% else %}
+            <p style="text-align:center">No results yet</p>
+        {% endif %}
+      </div>
+
       <h2 class="log">
         <a href="/login">Logout</a>
       </h2>
-        
-
-    
 
 </body>
 </html>
