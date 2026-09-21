@@ -12,7 +12,7 @@ db = mysql.connector.connect(
     database=os.getenv("DB_NAME", "skill_test")
 )
 
-cursor = db.cursor()
+cursor = db.cursor(buffered=True)
 
 all_questions = {
     'python': [
