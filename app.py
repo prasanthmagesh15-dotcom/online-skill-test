@@ -1,4 +1,4 @@
-from flask import Flask, render_template, request
+from flask import Flask, render_template, request, jsonify
 import mysql.connector
 import os
 
@@ -37,7 +37,6 @@ all_questions = {
         {"q": "8. Output? for(int i=0;i<3;i++){ if(i==1) continue; System.out.print(i); }", "options": ["02", "012", "01", "2"], "ans": "02"},
         {"q": "9. What happens? int x=5/0;", "options": ["ArithmeticException", "0", "Compiles fine", "null"], "ans": "ArithmeticException"},
         {"q": "10. Output? System.out.print(Math.pow(2,3));", "options": ["8.0", "8", "6.0", "9.0"], "ans": "8.0"}
-
     ],
     'c': [
         {"q": "1. C created by?", "options": ["Dennis Ritchie", "James Gosling", "Guido van Rossum", "Ken Thompson"], "ans": "Dennis Ritchie"},
@@ -116,6 +115,10 @@ def submit_quiz(subject):
         if request.form.get(f'q{i}') == questions[i]['ans']:
             score += 1
     return render_template('result.html', subject=subject, score=score, total=len(questions))
+
+@app.route('/api/<subject>')
+def api(subject):
+    return jsonify(all_questions.get(subject, []))
 
 if __name__ == '__main__':
     app.run(host='0.0.0.0', port=int(os.environ.get("PORT", 10000)))
